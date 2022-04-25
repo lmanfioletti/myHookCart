@@ -24,17 +24,17 @@ const Cart = (): JSX.Element => {
     ...product,
     priceFormattend: formatPrice(product.price)
   }))
-  const total= formatPrice(cart.reduce((sumTotal, product) => {  
-      sumTotal += product.amount * product.price;
-      return sumTotal;
-  }, 0 ))
+  const total = formatPrice(cart.reduce((sumTotal, product) => {
+    sumTotal += product.amount * product.price;
+    return sumTotal;
+  }, 0))
 
   function handleProductIncrement(product: Product) {
-    updateProductAmount({productId: product.id, amount: product.amount+1});
+    updateProductAmount({ productId: product.id, amount: product.amount + 1 });
   };
 
   function handleProductDecrement(product: Product) {
-    updateProductAmount({productId: product.id, amount: product.amount-1});
+    updateProductAmount({ productId: product.id, amount: product.amount - 1 });
   };
 
   function handleRemoveProduct(productId: number) {
@@ -53,11 +53,11 @@ const Cart = (): JSX.Element => {
             <th aria-label="delete icon" />
           </tr>
         </thead>
-        {
-          cartFormatted.map(product => {
-            return (
-              <tbody>
-                <tr data-testid={product.id}>
+        <tbody>
+          {
+            cartFormatted.map(product => {
+              return (
+                <tr key={product.id} data-testid="product">
                   <td>
                     <img src={product.image} alt={product.title} />
                   </td>
@@ -91,7 +91,7 @@ const Cart = (): JSX.Element => {
                     </div>
                   </td>
                   <td>
-                    <strong>{formatPrice(product.amount*product.price)}</strong>
+                    <strong>{formatPrice(product.amount * product.price)}</strong>
                   </td>
                   <td>
                     <button
@@ -103,10 +103,10 @@ const Cart = (): JSX.Element => {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            );
-          })
-        }
+              );
+            })
+          }
+        </tbody>
       </ProductTable>
 
       <footer>
